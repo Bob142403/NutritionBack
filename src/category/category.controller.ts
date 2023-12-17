@@ -1,12 +1,11 @@
 import { Request, Response } from "express";
-import { connect, pool } from "../../database/pool";
+import { pool } from "../../database/pool";
 
 class Category {
   async getDataByUserId(req: Request, res: Response) {
-    const client = await pool.connect();
     const userId = +req.params.userId;
     try {
-      const userDatas = await client.query(
+      const userDatas = await pool.query(
         `SELECT * FROM category WHERE userid = $1`,
         [userId]
       );
@@ -17,8 +16,6 @@ class Category {
   }
 
   async insert(req: Request, res: Response) {
-    const client = await pool.connect();
-
     const {
       group1,
       group2,
@@ -38,7 +35,7 @@ class Category {
     } = req.body;
 
     try {
-      await client.query(
+      await pool.query(
         `INSERT INTO category (group1, group2, group3, group4, group5, group6, group7, group8, group9, group10, group11, group12, group13, userId, date) 
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`,
         [
