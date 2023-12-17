@@ -4,7 +4,7 @@ import { pool } from "./database/pool";
 import auth from "./src/auth/auth.route";
 import category from "./src/category/category.route";
 
-const PORT = 5001;
+const PORT = process.env.PORT || 5001;
 const app = express();
 
 app.use(express.json());
