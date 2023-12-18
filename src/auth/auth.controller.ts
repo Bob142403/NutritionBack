@@ -15,7 +15,7 @@ class Auth {
 
       const token = jsonwebtoken.sign(req.body, jwtConfig.privateKey);
 
-      if (!user) {
+      if (!user.rowCount) {
         res.status(404).json("Incorrect User name or passsword");
       } else res.status(200).json({ token, user });
     } catch (err) {
@@ -35,7 +35,7 @@ class Auth {
         [user.username]
       );
 
-      if (userInfo) res.status(200).json(userInfo);
+      if (userInfo.rowCount) res.status(200).json(userInfo);
       else res.status(400).json("Error");
     } catch (err) {
       res.status(400).json("Token is not verifed!");
