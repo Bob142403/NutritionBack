@@ -16,7 +16,7 @@ class Auth {
       const token = jsonwebtoken.sign(req.body, jwtConfig.privateKey);
 
       if (!user.rowCount) {
-        res.status(404).json("Incorrect User name or passsword");
+        res.status(404).json("Incorrect UserName or Passsword");
       } else res.status(200).json({ token, user });
     } catch (err) {
       res.status(400).json("UnExpected Error");
@@ -53,6 +53,7 @@ class Auth {
       birthday,
       telephone,
       jamoat,
+      fromWho,
     } = req.body;
 
     try {
@@ -66,8 +67,8 @@ class Auth {
       }
 
       await pool.query(
-        `INSERT INTO users (username, disctrict, email, fio, gender, jamoat, password, telephone, village, birthday) 
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+        `INSERT INTO users (username, disctrict, email, fio, gender, jamoat, password, telephone, village, birthday, fromWho) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
         [
           username,
           disctrict,
@@ -79,6 +80,7 @@ class Auth {
           telephone,
           village,
           birthday,
+          fromWho,
         ]
       );
 
