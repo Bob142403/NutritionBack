@@ -6,26 +6,26 @@ import category from "./src/category/category.route";
 import feedback from "./src/feedback/feedback.route";
 import comment from "./src/comment/comment.route";
 import { config } from "dotenv";
-// import { CronJob } from "cron";
+import { CronJob } from "cron";
 
-// const cronJob = new CronJob("*/10 * * * * *", async () => {
-//   // console.log("____________________/");
-//   console.log("CronJob Start");
-//   try {
-//     // const client = await pool.connect();
-//     await pool.query(`SELECT * FROM users`);
-//     // console.log("CRONJOB WORKING");
-//     // await pool.end();
-//   } catch (e) {
-//     console.error(e);
-//   }
-//   console.log("CronJob Finish!");
-// });
+const cronJob = new CronJob("*/2 * * * *", async () => {
+  // console.log("____________________/");
+  console.log("CronJob Start ", new Date().toTimeString());
+  try {
+    // const client = await pool.connect();
+    await pool.query(`SELECT * FROM users`);
+    // console.log("CRONJOB WORKING");
+    // await pool.end();
+  } catch (e) {
+    console.error(e);
+  }
+  console.log("CronJob Finish! ", new Date().toTimeString());
+});
 
-// // Start job
-// if (!cronJob.running) {
-//   cronJob.start();
-// }
+// Start job
+if (!cronJob.running) {
+  cronJob.start();
+}
 
 config();
 
