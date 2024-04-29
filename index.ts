@@ -5,6 +5,10 @@ import auth from "./src/auth/auth.route";
 import category from "./src/category/category.route";
 import feedback from "./src/feedback/feedback.route";
 import comment from "./src/comment/comment.route";
+import breakfast from "./src/breakfast/breakfast.route";
+import lunch from "./src/lunch/lunch.route";
+import dinner from "./src/dinner/dinner.route";
+import categories from "./src/categories/categories.route";
 import { config } from "dotenv";
 import { CronJob } from "cron";
 
@@ -13,7 +17,8 @@ import { CronJob } from "cron";
 //   console.log("CronJob Start ", new Date().toTimeString());
 //   try {
 //     // const client = await pool.connect();
-//     await pool.query(`SELECT * FROM users`);
+//     const qwe = await pool.query(`SELECT * FROM breakfastgroup`);
+//     console.log(qwe);
 //     // console.log("CRONJOB WORKING");
 //     // await pool.end();
 //   } catch (e) {
@@ -66,6 +71,10 @@ app.use(auth);
 app.use("/category", category);
 app.use("/feedback", feedback);
 app.use("/comment", comment);
+app.use("/breakfast", breakfast);
+app.use("/lunch", lunch);
+app.use("/dinner", dinner);
+app.use("/categories", categories);
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}.`);

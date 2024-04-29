@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("breakfastfood")
-class BreakFastFood {
+@Entity("breakfastproduct")
+class BreakfastProduct {
   @PrimaryGeneratedColumn()
   id!: string;
 
@@ -21,7 +21,7 @@ class BreakFastFood {
   "label::Uzbek"!: string;
 
   @Column()
-  BreakfastGroup!: string;
+  Food!: string;
 }
 
-export default BreakFastFood;
+export default BreakfastProduct;
