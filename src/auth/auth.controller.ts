@@ -6,7 +6,7 @@ import SignIn from "../types/SignIn";
 
 class Auth {
   async signIn(req: Request, res: Response) {
-    const { username } = req.body;
+    const { username, password } = req.body;
 
     try {
       const user = await pool.query(`SELECT * FROM users WHERE username = $1`, [
@@ -15,7 +15,7 @@ class Auth {
 
       const token = jsonwebtoken.sign(req.body, jwtConfig.privateKey);
 
-      if (!user.rowCount) {
+      if (!user.rowCount || user.rows[0].password !== password) {
         res.status(404).json("Incorrect UserName or Passsword");
       } else res.status(200).json({ token, user });
     } catch (err) {

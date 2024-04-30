@@ -4,13 +4,15 @@ import { pool } from "../../database/pool";
 class Category {
   async getDataByUserId(req: Request, res: Response) {
     const userId = +req.params.userId;
+    console.log("userId:", userId);
     try {
       const userDatas = await pool.query(
-        `SELECT * FROM category WHERE userid = $1`,
+        `SELECT * FROM category WHERE "userId" = $1`,
         [userId]
       );
       res.status(200).json(userDatas);
     } catch (err) {
+      console.log(err);
       res.status(400).json(err);
     }
   }
@@ -36,7 +38,7 @@ class Category {
 
     try {
       await pool.query(
-        `INSERT INTO category (group1, group2, group3, group4, group5, group6, group7, group8, group9, group10, group11, group12, group13, userId, date) 
+        `INSERT INTO category (group1, group2, group3, group4, group5, group6, group7, group8, group9, group10, group11, group12, group13, "userId", date) 
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`,
         [
           group1,
@@ -59,6 +61,7 @@ class Category {
 
       res.status(200).json("User Created");
     } catch (err) {
+      console.log(err);
       res.status(400).json("UnExpected Error");
     }
   }
