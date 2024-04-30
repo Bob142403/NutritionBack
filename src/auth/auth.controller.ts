@@ -61,13 +61,15 @@ class Auth {
         `SELECT * FROM users WHERE username = $1`,
         [username]
       );
+
+      // console.log("userCheck: ", userCheck);
       if (userCheck.rowCount) {
         res.status(400).json("This username is already Excist");
         return req.body;
       }
 
       await pool.query(
-        `INSERT INTO users (username, disctrict, email, fio, gender, jamoat, password, telephone, village, birthday, fromWho) 
+        `INSERT INTO users (username, disctrict, email, fio, gender, jamoat, password, telephone, village, birthday, "fromWho") 
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
         [
           username,
@@ -86,6 +88,7 @@ class Auth {
 
       res.status(200).json("User Created");
     } catch (err) {
+      console.log(err);
       res.status(400).json("UnExpected Error");
     }
     return req.body;
