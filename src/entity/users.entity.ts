@@ -9,7 +9,7 @@ class Users {
   username!: string;
 
   @Column()
-  disctrict!: string;
+  district!: string;
 
   @Column()
   email!: string;

@@ -69,7 +69,7 @@ class Auth {
       }
 
       await pool.query(
-        `INSERT INTO users (username, disctrict, email, fio, gender, jamoat, password, telephone, village, birthday, "fromWho") 
+        `INSERT INTO users (username, district, email, fio, gender, jamoat, password, telephone, village, birthday, "fromWho") 
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
         [
           username,

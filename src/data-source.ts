@@ -2,11 +2,11 @@ import { DataSource } from "typeorm";
 
 export const PostgresDataSource = new DataSource({
   type: "postgres",
-  host: "dpg-con2a9kf7o1s73fc9f9g-a.frankfurt-postgres.render.com",
+  host: "dpg-ctdt3ilumphs7398aia0-a.frankfurt-postgres.render.com",
   port: 5432,
-  username: "db_nutrition_5wf9_user",
-  password: "KbbbE4Dlq7pa5bT3RJQRpxrDJ8ejyklo",
-  database: "db_nutrition_5wf9",
+  username: "usr_nutrition",
+  password: "w3hsdAPxU7MSKzsHVSdSPKJpTN0HD5C0",
+  database: "db_nutrition_8kef",
   entities: ["src/**/*.entity{.ts,.js}"],
   ssl: true,
   migrations: ["src/migrations/*{.ts,.js}"],
